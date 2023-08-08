@@ -1,3 +1,37 @@
+/*Một siêu thị tổ chức việc thanh toán cho khách hàng với bốn quầy thu ngân và bốn hàng
+khách (được đánh số 1,2,3,4). Hoạt động thanh toán được thực hiện như mô tả sau:
+- Khi có yêu cầu thanh toán, một nhân viên điều phối thông thường sẽ hướng dẫn
+khách hàng vào cuối một trong các hàng theo nguyên tắc phân phối round-robin
+(gửi vào lần lượt từng hàng và quay vòng lại: VD: 1,2,3,4,1,2,3,4,...). Khách hàng
+được phát một mã số để tiến hành gọi khi checkout. Mã số khách hàng là một số
+nguyên, tăng dần cho từng khách hàng mới (bắt đầu từ 1).
+o Nhân viên điều phối tốt có thể hướng dẫn khách hàng vào hàng có ít
+người nhất. Việc điều phối này không ảnh hưởng đến thứ tự phân phối của
+nhân viên thông thường (hàng tiếp theo trong phân phối round-robin sẽ giữ
+nguyên).
+
+- Nhân viên thu ngân tại quầy thanh toán thứ i sẽ gọi lần lượt các khách hàng trong
+hàng thứ i để thực hiện checkout.
+- Tùy thuộc vào số lượng khách hàng mà siêu thị quyết định mở thêm một quầy thu
+ngân mới (cùng với hàng khách mới) hoặc đóng một quầy thu ngân.
+o Trong trường hợp mở thêm quầy thu ngân mới, quầy mới sẽ được đặt cuối
+cùng trong danh sách quầy. Số hiệu quầy mới và hàng tương ứng sẽ được
+
+đặt tăng dần, bắt đầu từ 5. Lưu ý hàng tiếp theo trong phân phối round-
+robin có thể thay đổi khi mở thêm quầy mới (VD. có 4 hàng và đã phân
+
+phối đến hàng thứ 4, khi thêm vào quầy mới vào cuối danh sách, hàng mới
+sẽ là hàng tiếp theo trong phân phối).
+o Trong trường hợp đóng một quầy thu ngân, số hiệu quầy thu ngân và hàng
+còn lại sẽ được giữ nguyên. Lần lượt từng khách hàng trong hàng tương
+ứng với quầy bị đóng(thứ tự từ đầu đến cuối hàng) sẽ được chuyển sang các
+hàng còn lại theo nguyên tắc round-robin, bắt đầu từ quầy tiếp theo trong
+phân phối này. Lưu ý hàng bị đóng có thể chính là hàng tiếp theo trong
+phân phối round-robin, khi đó cần dịch chuyển tiếp tục giá trị này trước khi
+đóng quầy.
+Chỉ được đóng quầy khi số lượng quầy >= 2.
+
+    
 #include<bits/stdc++.h>
 using namespace std;
 int cur_number = 1;
